@@ -1,0 +1,394 @@
+*{
+  margin: 0;
+}
+html{
+  height: 100vh;
+}
+body{
+  height: 100%;
+}
+#root, .App{
+  height: 100%;
+  border: 0;
+}
+.header{
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+  font-size: 1.5em;
+  gap: 1em;
+  display: flex;
+  box-sizing: border-box;
+  padding: 20px 20px;
+  height: 10%;
+  border: 0;
+  border-bottom: 2px solid rgb(0,0,0,0.7);
+  background-color: #000000;
+}
+.nav-cert, .nav-valid, .nav-logout{
+  border: 0;
+
+}
+.nav-cert{
+  margin-left: 3em;
+}
+.nav-valid{
+
+}
+.nav-logout{
+  position: absolute;
+  right: 2em;
+}
+.cert-page, .valid-page{  
+  height: 90%;
+  border: 0;
+}
+.nav-cert:hover, .nav-valid:hover, .nav-logout:hover{
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+.cert-page-header{
+  box-sizing: border-box;
+  padding: 5px 20px;
+  height: 5%;  
+  border: 0;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  color: rgba(0, 0, 0, 0.8);
+}
+.toggle-owned{
+  margin-left: 3em;
+  border: 1px solid black;
+  border-top-left-radius:8%;
+  border-bottom-left-radius: 8%;
+  padding: 0px 0.25em;
+
+  background-color: rgba(225, 230, 226, 1);
+
+}
+.toggle-issued{
+  border: 0;  
+  border-top-right-radius: 8%;
+  border-bottom-right-radius: 8%;
+  padding: 0px 0.25em;
+  padding-left:  0.5em;
+  border: 1px solid black;
+  border-left: 0;
+  background-color: rgba(225, 230, 226, 1);
+
+}
+.toggle-issued:hover, .toggle-owned:hover{
+  cursor: pointer;
+}
+
+.content{
+  height: 95%;
+  border: 0;
+  display: flex;
+}
+.cert-pane{  
+  border: 2px solid rgb(0,0,0,0.7);
+  border-right: 1px solid rgb(0,0,0,0.7);
+  border-bottom: 0px;
+  width: 75%;
+}
+.req-pane{
+  border: 2px solid rgb(0,0,0,0.7);
+  border-left: 1px solid rgb(0, 0, 0,0.7);  
+  box-sizing: border-box;
+  padding: 10px 10px;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+
+.req{
+  margin-bottom: 15px;
+  background-color: rgb(255 106 0 / 22%);
+  border-radius: 3%;
+  border: 0;
+  padding: 20px 15px;
+}
+.req a {
+    color: darkblue;
+    text-decoration: underline solid darkblue 1px ;
+    cursor: pointer;
+}
+/*-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif
+*/
+.request-text{
+    font-family: '';
+    font-size: 1.11em;
+    margin-bottom: 20px;
+}
+.request-btn{
+    font-size: 1.0em;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.btn-wrapper{
+    display: flex;
+}
+.error{
+    text-align: center;
+    color: red;
+}
+
+.cert-pane-header{
+  position:relative;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 0;
+  height: 30px;
+}
+.issue-btn{
+  position: absolute;
+  right: 40px;
+  font-size: 1em;
+}
+.issue-btn:hover{
+  cursor: pointer;
+}
+
+.cert-pane-content{
+  border: 0;
+  padding: 20px 50px;
+  box-sizing: border-box;
+  height: calc(100% - 32px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2em;
+  overflow: auto;  
+}
+
+.cert{
+  margin: auto;
+  border: 0;
+  
+}
+.cert-descr{
+  box-sizing: border-box;
+  font-size: 1.1em;
+  font-style: italic;
+  background-color: #fcffd2;
+  padding: 5px 20px;
+  border: 0;
+  width: 400px;
+  word-break: break-all;
+  line-height: 1.2em;
+}
+
+.cert-descr > div {
+  margin-bottom: 5px;
+}
+
+/*
+Css trick to simulate on click events on images and 
+resize them to their initial size
+*/
+label img {
+  width:inherit;
+  height: inherit;
+}
+label img:hover{
+  cursor: pointer;
+}
+.cert label{
+  display: block;
+  width: 400px;
+  height: 300px;
+}
+.cert input{
+  display: none;
+}
+
+input[id^='pic']:checked + label {
+  width: auto;
+  height: auto;
+}
+
+
+input[id^='pic']:checked + label + div {
+  width: 100%;
+}
+
+.modal{
+    display: none;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    z-index:1;
+    padding: 100px 50px;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-img{
+    display: block;
+    margin: auto;
+}
+.close{
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #363535;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.close:hover{
+    color: #707070;
+    text-decoration: none;
+    cursor: pointer;    
+}
+
+.form{
+    display: none;
+    box-sizing: border-box;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    z-index:1;
+    max-height: 90%;
+    max-width: 90%;
+    padding: 100px 50px;
+    background-color: #fcffcb;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.form form{
+    display: block;
+}
+.form fieldset{
+    border: 0;
+}
+.form .error{
+    text-align: center;
+    font-size: 1.2em;
+    color: red;
+}
+
+.form .success{
+    text-align: center;
+    font-size: 1.2em;
+    color: green;
+}
+
+.hidden-opt{
+    display: none;
+}
+
+.create-btn{
+    font-size: 1em;
+    margin: 0px 10px 0px 20px;
+}
+
+.select-contract{
+    text-align: center;
+    font-size: 1em;
+    min-height: 1.4em;
+}
+
+.valid-page{
+    box-sizing: border-box;
+    padding: 30px 50px;
+    font-size: 1.1em;
+}
+
+.valid-page input[type=file]{
+    display: none;
+}
+.file-group{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.valid-page label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5em;
+    padding: 0px 5px;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid grey;
+    background-color: rgba(200,200,200,0.7);
+}
+.fileName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    font-style: italic;
+}
+.valid-page label:hover{
+    background-color: rgba(200,200,200,1);
+}
+.validator-address{
+    font-size: 1em;
+    display: block;
+    border-radius: 5px;
+    width: 100%;
+    height: 2em;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    padding: 0px 5px;
+}
+.valid-btn, .login-btn{
+    background-color: rgba(200,200,200,0.7);
+    border: 1px solid grey;
+    border-radius: 2px;
+    font-size: 1.1em;
+    display: block;
+    height: 1.8em;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.valid-btn:hover, .login-btn:hover{
+    background-color: rgba(200,200,200,1);
+}
+.valid-msg{
+    font-size: 1.3em;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    margin-bottom: 60px;
+}
+.valid-result-field{
+    word-wrap: break-word;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 2px 4px;
+    margin: 2px 0px 10px 0px;
+}
+
+.login-page{
+    text-align: center;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 40px 50px;
+    font-size: 1.3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-btn{
+
+}
+.error-msg{
+    color: red;
+}
