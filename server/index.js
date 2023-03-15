@@ -39,8 +39,9 @@ const QUERIES = {
 app.use(
 	bodyParser.urlencoded({
 		extended: true,
+      limit : '300mb'
 	}),
-	bodyParser.json(),
+	bodyParser.json({limit : '300mb'}),
 	cors()
 );
 
